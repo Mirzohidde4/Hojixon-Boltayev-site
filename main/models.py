@@ -34,6 +34,12 @@ class Add(models.Model):
 
 class Site(models.Model):
     title = models.CharField(max_length=100, verbose_name='title')
-    icon = models.ImageField(upload_to='images/', verbose_name='rasm')
+    icon = models.ImageField(upload_to='images/', verbose_name='icon')
     name = models.CharField(verbose_name='ism', max_length=100)
     description = models.CharField(verbose_name='des', max_length=100)    
+
+
+class Comments(models.Model):
+    author = models.CharField(max_length=100, verbose_name='user')
+    comment = models.TextField(verbose_name='coment')
+    created = models.DateTimeField(auto_now_add=True)

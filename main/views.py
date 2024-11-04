@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Biografiya, Index, Add, Site
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Biografiya, Index, Add, Site, Comments
 
 # Create your views here.
 def IndexView(request):
@@ -23,4 +23,13 @@ def AddView(request):
 def StoreView(request):
     site = Site.objects.first()
     store = Biografiya.objects.first()
-    return render(request, 'store.html', {'store': store, 'site': site})
+    izoh = Comments.objects.all()
+    
+    if request.method == 'POST':
+        comment = request.POST.get('comment')
+        user = request.user
+        if comment and len(comment.strip()) != 0:
+            Comments.objects.create(author=user, comment=comment)
+        return redirect('store')  
+    
+    return render(request, 'store.html', {'store': store, 'site': site, 'izoh': izoh})
