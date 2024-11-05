@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+    <title>{{ site.title }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ site.icon.url }}" />
+    <link href="{% static 'style.css' %}" rel="stylesheet" />
+    <style>
+        /* Asosiy container uchun */
+        .containerr {
+            width: 900px;
+            margin: auto;
+            border-radius: 10px;
+            padding: 20px;
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+        }
+
+        /* Sarlavha uchun */
+        .containerr h2 {
+            text-align: center;
+            font-size: 24px;
+            color: #4a3f35; /* Matn rangi */
+            margin-bottom: 15px;
+        }
+
+        /* Form uchun */
+        .signup .field {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .signup .field label {
+            font-size: 14px;
+            color: #4a3f35;
+            margin-bottom: 5px;
+        }
+
+        .signup .field input {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #d1b89d;
+            border-radius: 5px;
+        }
+
+        /* Xato xabarlari */
+        .signup .field span {
+            font-size: 12px;
+            color: rgb(158, 25, 25);
+            margin-top: 5px;
+        }
+
+        /* Tugma uchun */
+        .signup .field.btnn {
+            text-align: center;
+        }
+
+        .signup .knopka {
+            width: 100%;
+            padding: 10px;
+            background-color: #d99469; /* Tugma rangi */
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .signup .knopka:hover {
+            background-color: #c97b53;
+        }
+
+        /* Kirish linki uchun */
+        .signup .signup-link {
+            text-align: center;
+            font-size: 14px;
+            color: #4a3f35;
+            margin-top: 10px;
+        }
+
+        .signup .signup-link a {
+            color: #d99469;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signup .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="site-heading text-center text-faded d-none d-lg-block">
+            <span class="site-heading-upper text-primary mb-3">{{ site.name }}</span>
+            <span class="site-heading-lower">{{ site.description }}</span>
+        </h1>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">  
+        <div class="container">
+            <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'index' %}">Asosiy sahifa</a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'about' %}">Batafsil</a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'products' %}">Qo'shimcha</a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'store' %}">Yakuniy</a></li>
+                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'login' %}">Kirish</a></li>                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="page-section about-heading">
+        <div class="containerr">
+            <div class="about-heading-content">
+                <div class="row">
+                    <div class="col-xl-9 col-lg-10 mx-auto">
+                        <div class="bg-faded rounded p-5">
+                           
+                            <div class="container">
+                                <h2>RO'YHATDAN O'TISH</h2>
+                                <form method="POST" class="signup">
+                                    {% csrf_token %}
+                                    <div class="field">
+                                        <label for="firstname">firstname</label>
+                                        <input type="text" name="firstname" placeholder="firstname" id="firstname" required>
+                                    </div>
+                                    <div class="field">
+                                        <label for="lastname">lastname</label>
+                                        <input type="text" name="lastname" placeholder="lastname" id="lastname" required>
+                                    </div>
+                                    <div class="field">
+                                        <label for="username">username</label>
+                                        <input type="text" name="username" placeholder="username" id="username" required>
+                                        <!-- <br><span style="color: rgb(158, 25, 25); font-weight: 500;">{{ name }}</span> -->
+                                    </div>
+                                    <div class="field">
+                                        <label for="email">email</label>
+                                        <input type="email" name="email" placeholder="email" id="email" required>
+                                        <!-- <br><span style="color: rgb(158, 25, 25); font-weight: 500;">{{ pochta }}</span> -->
+                                    </div>
+                                    <div class="field">
+                                        <label for="password1">password</label>
+                                        <input type="password" name="password1" placeholder="password" id="password1" required>
+                                    </div>
+                                    <div class="field">
+                                        <label for="password2">password</label>
+                                        <input type="password" name="password2" placeholder="confirm password" id="password2" required>
+                                        <!-- <br><span style="color: rgb(158, 25, 25); font-weight: 500;">{{ hato }}</span> -->
+                                    </div>
+                                    <div class="field btnn">
+                                        <div class="btn-layer"></div>
+                                        <input class="knopka" type="submit" name="signup" value="Yuborish">
+                                        <div class="signup-link">Akkauntingiz bormi? <a href="{% url 'login' %}">Kirish</a></div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -120,6 +120,24 @@
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'about' %}">Batafsil</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'products' %}">Qo'shimcha</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'store' %}">Yakuniy</a></li>
+
+                        <li style="margin-left: 20px;" class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                PROFIL
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% if request.user.is_authenticated %}
+                                <li><a class="dropdown-item" href="/">{{ request.user }}</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a style="color: red;" class="dropdown-item" href="{% url 'logout' %}">Chiqish</a></li>
+                                {% else %}
+                                <li><a class="dropdown-item" href="{% url 'sign' %}">Ro'yhatdan o'tish</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{% url 'login' %}">Kirish</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -129,13 +147,11 @@
                 <div class="row">
                     <div class="col-xl-9 mx-auto">
                         <div class="cta-inner bg-faded text-center rounded">
-                           
                             <h2 class="section-heading mb-5">
                                 <span class="section-heading-upper">Hojixon Boltayev</span>
                                 <span class="section-heading-lower">Hayoti va ijodi</span>
                             </h2>
                             <iframe width="640" height="360" src="https://www.youtube.com/embed/oY1bLV6VltY?si=-qrAap5WQYTSiqq1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            
 
                             <div class="comment-form">
                                 <em><strong>FIKRINGIZNI BILDIRING</strong></em>
@@ -145,7 +161,6 @@
                                     <button type="submit">Yuborish</button>
                                 </form>
                             </div>
-
 
                         </div>
                     </div>
@@ -160,18 +175,6 @@
                         <div class="col-xl-9 col-lg-10 mx-auto">
                             <div class="bg-faded rounded p-5">
                                
-<!-- 
-                                <div class="comments">
-                                    <h3>Izohlar</h3>
-                                    {% for coment in izoh %}
-                                        <div class="comment">
-                                            <p><strong>{{ coment.author }}</strong></p>
-                                            <p>{{ coment.comment }}</p>
-                                            <p class="timestamp">{{ coment.created.date }} {{ coment.created.time }}</p>
-                                        </div>
-                                    {% endfor %}    
-                                </div> -->
-
                                 <div class="comments">
                                     <h3>Izohlar</h3>
                                     <div class="comment-list">
@@ -185,7 +188,6 @@
                                     </div>
                                 </div>
                                 
-
                             </div>
                         </div>
                     </div>

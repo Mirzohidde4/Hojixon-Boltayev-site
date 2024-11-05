@@ -32,6 +32,24 @@
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'about' %}">Batafsil</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'products' %}">Qo'shimcha</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'store' %}">Yakuniy</a></li>
+                        
+                        <li style="margin-left: 20px;" class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                PROFIL
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% if request.user.is_authenticated %}
+                                <li><a class="dropdown-item" href="#">{{ request.user }}</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a style="color: red;" class="dropdown-item" href="{% url 'logout' %}">Chiqish</a></li>
+                                {% else %}
+                                <li><a class="dropdown-item" href="{% url 'sign' %}">Ro'yhatdan o'tish</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{% url 'login' %}">Kirish</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        
                     </ul>
                 </div>
             </div>
