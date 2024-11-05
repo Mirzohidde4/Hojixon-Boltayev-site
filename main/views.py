@@ -28,12 +28,13 @@ def StoreView(request):
     izoh = Comments.objects.all()
     
     if request.method == 'POST':
-        comment = request.POST.get('comment')
         user = request.user
-        if comment and len(comment.strip()) != 0:
-            Comments.objects.create(author=user, comment=comment)
-        return redirect('store')  
-    
+        if User.objects.filter(username=user).exists():
+            comment = request.POST.get('comment')
+            if comment and len(comment.strip()) != 0:
+                Comments.objects.create(author=user, comment=comment)
+            return redirect('store')  
+        return redirect('sign')
     return render(request, 'store.html', {'store': store, 'site': site, 'izoh': izoh})
 
 

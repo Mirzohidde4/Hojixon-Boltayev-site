@@ -11,8 +11,8 @@ class Index(models.Model):
         return self.name
     
     class Meta:
-        verbose_name = 'Asosiy sahifa'
-        verbose_name_plural = 'Asosiy sahifa'
+        verbose_name = '1-sahifa'
+        verbose_name_plural = '1-sahifa'
 
 
 class Biografiya(models.Model):
@@ -26,8 +26,8 @@ class Biografiya(models.Model):
         return self.name
     
     class Meta:
-        verbose_name = 'Batafsil'
-        verbose_name_plural = 'Batafsil'
+        verbose_name = '2-sahifa'
+        verbose_name_plural = '2-sahifa'
 
 
 class Add(models.Model):
@@ -40,8 +40,8 @@ class Add(models.Model):
         return self.name
     
     class Meta:
-        verbose_name = "Qo'shimcha"
-        verbose_name_plural = "Qo'shimcha"
+        verbose_name = "3-sahifa"
+        verbose_name_plural = "3-sahifa"
     
 
 class Site(models.Model):
@@ -49,10 +49,14 @@ class Site(models.Model):
     icon = models.ImageField(upload_to='images/', verbose_name='belgisi')
     name = models.CharField(verbose_name='ismi', max_length=100)
     description = models.CharField(verbose_name='qisqacha', max_length=100)
+    page1 = models.CharField(max_length=100, verbose_name='1-sahifa')
+    page2 = models.CharField(max_length=100, verbose_name='2-sahifa')
+    page3 = models.CharField(max_length=100, verbose_name='3-sahifa')
+    page4 = models.CharField(max_length=100, verbose_name='4-sahifa')
 
     class Meta:
-        verbose_name = "Web sayt"
-        verbose_name_plural = "Web sayt"    
+        verbose_name = "4-sahifa"
+        verbose_name_plural = "4-sahifa"    
 
 
 class Comments(models.Model):

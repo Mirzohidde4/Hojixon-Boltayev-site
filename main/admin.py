@@ -25,7 +25,7 @@ class HojixonIndex(ModelAdmin):
 
 @admin.register(Site)
 class HojixonSite(ModelAdmin):
-    list_display = ('title', 'name', 'description')
+    list_display = ('title',)
 
 
 @admin.register(Comments)

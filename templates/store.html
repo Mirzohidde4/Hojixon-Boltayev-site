@@ -41,6 +41,7 @@
             }
 
             .comment-form button {
+                width: 150px;
                 background-color: #9d6f40; /* Tugma rangini sayt dizayniga mos tanlash */
                 color: white;
                 font-size: 16px;
@@ -116,10 +117,10 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'index' %}">Asosiy sahifa</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'about' %}">Batafsil</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'products' %}">Qo'shimcha</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'store' %}">Yakuniy</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'index' %}">{{ site.page1 }}</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'about' %}">{{ site.page2 }}</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'products' %}">{{ site.page3 }}</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'store' %}">{{ site.page4 }}</a></li>
 
                         <li style="margin-left: 20px;" class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -157,7 +158,7 @@
                                 <em><strong>FIKRINGIZNI BILDIRING</strong></em>
                                 <form method="POST">
                                     {% csrf_token %}
-                                    <textarea name="comment"></textarea><br>
+                                    <textarea name="comment" placeholder="xabar yozing..."></textarea><br>
                                     <button type="submit">Yuborish</button>
                                 </form>
                             </div>
@@ -176,7 +177,7 @@
                             <div class="bg-faded rounded p-5">
                                
                                 <div class="comments">
-                                    <h3>Izohlar</h3>
+                                    <h3>IZOHLAR</h3>
                                     <div class="comment-list">
                                         {% for coment in izoh %}
                                             <div class="comment">
