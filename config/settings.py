@@ -19,6 +19,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'unfold',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,6 +68,18 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+UNFOLD = {
+    "SITE_TITLE": "Settings",
+    "SITE_HEADER": "Hojixon Boltayev",
+    "SITE_SYMBOL": "artist",
+    "SHOW_HISTORY": True, # show/hide "History" button, default: True
+    "SHOW_VIEW_ON_SITE": True,
+    "SIDEBAR": {
+        # "show_search": True,  # Search in applications and models names
+        "show_all_applications": True,
     }
 }
 

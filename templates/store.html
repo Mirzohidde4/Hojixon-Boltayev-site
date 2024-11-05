@@ -13,6 +13,94 @@
         <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'style.css' %}" rel="stylesheet" />
+
+        <style>
+            .comment-form {
+                padding-top: 20px;
+                text-align: center;
+            }
+
+            .comment-form em strong {
+                font-size: 18px;
+                color: #5b4636; /* Matnga mos keladigan rang */
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .comment-form textarea {
+                width: 80%;
+                height: 80px;
+                padding: 10px;
+                border: 1px solid #d3c4a6; /* Haqiqiy ramka rangiga mos */
+                border-radius: 5px;
+                background-color: #f8f3e9; /* Engil fon rangi */
+                color: #5b4636;
+                font-size: 16px;
+                resize: vertical;
+                margin-bottom: 10px;
+            }
+
+            .comment-form button {
+                background-color: #9d6f40; /* Tugma rangini sayt dizayniga mos tanlash */
+                color: white;
+                font-size: 16px;
+                padding: 8px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .comment-form button:hover {
+                background-color: #6b4528; /* Hover effekti */
+            }
+            
+            .comments {
+                background-color: #f8f3e9;
+                border-radius: 10px;
+                padding: 20px;
+                width: 80%;
+                margin: 20px auto;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            .comments h3 {
+                font-size: 24px;
+                color: #5b4636;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .comment-list {
+                max-height: 300px; /* Maksimal balandlik */
+                overflow-y: auto; /* Faqat vertikal scroll */
+                padding-right: 10px; /* Scroll bar uchun joy */
+            }
+
+            .comment {
+                margin-bottom: 20px;
+                padding: 10px;
+                border-bottom: 1px solid #d3c4a6;
+                word-wrap: break-word; /* Uzoq so'zlarni o'ramoq */
+                white-space: normal; /* Matnni kenglikka mos ravishda o'rash */
+            }
+
+            .comment p {
+                margin: 5px 0;
+                color: #5b4636;
+            }
+
+            .comment strong {
+                font-size: 18px;
+                color: #a67c52;
+            }
+
+            .comment .timestamp {
+                font-size: 14px;
+                color: #8a6345;
+                text-align: right;
+            }
+        </style>
     </head>
     <body>
         <header>
@@ -31,7 +119,7 @@
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'index' %}">Asosiy sahifa</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'about' %}">Batafsil</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'products' %}">Qo'shimcha</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'store' %}">Store</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'store' %}">Yakuniy</a></li>
                     </ul>
                 </div>
             </div>
@@ -41,13 +129,15 @@
                 <div class="row">
                     <div class="col-xl-9 mx-auto">
                         <div class="cta-inner bg-faded text-center rounded">
+                           
                             <h2 class="section-heading mb-5">
                                 <span class="section-heading-upper">Hojixon Boltayev</span>
                                 <span class="section-heading-lower">Hayoti va ijodi</span>
                             </h2>
                             <iframe width="640" height="360" src="https://www.youtube.com/embed/oY1bLV6VltY?si=-qrAap5WQYTSiqq1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             
-                            <div style="padding-top: 20px;" class="comment-form">
+
+                            <div class="comment-form">
                                 <em><strong>FIKRINGIZNI BILDIRING</strong></em>
                                 <form method="POST">
                                     {% csrf_token %}
@@ -70,6 +160,7 @@
                         <div class="col-xl-9 col-lg-10 mx-auto">
                             <div class="bg-faded rounded p-5">
                                
+<!-- 
                                 <div class="comments">
                                     <h3>Izohlar</h3>
                                     {% for coment in izoh %}
@@ -79,7 +170,21 @@
                                             <p class="timestamp">{{ coment.created.date }} {{ coment.created.time }}</p>
                                         </div>
                                     {% endfor %}    
+                                </div> -->
+
+                                <div class="comments">
+                                    <h3>Izohlar</h3>
+                                    <div class="comment-list">
+                                        {% for coment in izoh %}
+                                            <div class="comment">
+                                                <p><strong>{{ coment.author }}</strong></p>
+                                                <p>{{ coment.comment }}</p>
+                                                <p class="timestamp">{{ coment.created.date }} {{ coment.created.time }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
                                 </div>
+                                
 
                             </div>
                         </div>
