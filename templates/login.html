@@ -124,25 +124,30 @@
             </div>
         </div>
     </nav>
-    <div class="ccontainer">
-        <h2 >KIRISH</h2>
-        <form method="POST" class="login">
-            {% csrf_token %}
-            <div class="field">
-                <label for="username">Foydalanuvchi ism</label>
-                <input type="text" name="username" placeholder="foydalanuvchi ismingiz..." id="username" required>
-            </div>
-            <div class="field">
-                <label for="password">Parol</label>
-                <input type="password" name="password" id="password" placeholder="parolingiz..." required>
-                <!-- <br><p style="color: rgb(170, 24, 24); font-weight: 500;" class="hato">{{ hato }}</p> -->
-            </div>
-            <!-- <div style="color: red;" class="signup-link"><a href="#">parol esdan chiqtimi?</a></div> -->
-            <div class="field btn">
-                <div class="btn-layer"></div>
-                <input class="knopka" type="submit" name="login" value="Kirish">
-            <div class="signup-link">Akkountingiz yo'qmi? <a href="{% url 'sign' %}">Ro'yhatdan o'tish</a></div>
-        </form>
-    </div>
+    <section class="page-section about-heading">
+        <div class="ccontainer">
+            <h2 >KIRISH</h2>
+            <form method="POST" class="login">
+                {% csrf_token %}
+                <div class="field">
+                    <label for="username">Foydalanuvchi ism</label>
+                    <input type="text" name="username" placeholder="foydalanuvchi ismingiz..." id="username" required>
+                </div>
+                <div class="field">
+                    <label for="password">Parol</label>
+                    <input type="password" name="password" id="password" placeholder="parolingiz..." required>
+                    <!-- <br><p style="color: rgb(170, 24, 24); font-weight: 500;" class="hato">{{ hato }}</p> -->
+                </div>
+                <!-- <div style="color: red;" class="signup-link"><a href="#">parol esdan chiqtimi?</a></div> -->
+                <div class="field btn">
+                    <div class="btn-layer"></div>
+                    <input class="knopka" type="submit" name="login" value="Kirish">
+                <div class="signup-link">Akkountingiz yo'qmi? <a href="{% url 'sign' %}">Ro'yhatdan o'tish</a></div>
+            </form>
+        </div>
+    </section>
+    <footer class="footer text-faded text-center py-5">
+        <div class="container"><p class="m-0 small">{{ site.title }} &copy; Website</p></div>
+    </footer>
 </body>
 </html>

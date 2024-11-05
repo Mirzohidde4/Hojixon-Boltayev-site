@@ -39,6 +39,7 @@ def StoreView(request):
 
 
 def SignPage(request):
+    site = Site.objects.first()
     if request.method == 'POST':
         first_name = request.POST.get('firstname')
         last_name = request.POST.get('lastname')
@@ -49,10 +50,10 @@ def SignPage(request):
         if password1 == password2:
             if User.objects.filter(username=username).exists():
                 name = 'username exists!'
-                return render(request, 'sign.html', {'name': name})
+                return render(request, 'sign.html', {'name': name, 'site': site})
             if User.objects.filter(email=email).exists():
                 pochta = 'email address exists!'
-                return render(request, 'sign.html', {'pochta': pochta})
+                return render(request, 'sign.html', {'pochta': pochta, 'site': site})
             else:
                 user = User.objects.create_user(username=username, email=email, password=password1, first_name=first_name, last_name=last_name)
                 user.save()
@@ -60,11 +61,12 @@ def SignPage(request):
                 return redirect('index')
         else:
             hato = 'passwords didn\'t match!'
-            return render(request, 'sign.html', {'hato': hato})
-    return render(request, 'sign.html')
+            return render(request, 'sign.html', {'hato': hato, 'site': site})
+    return render(request, 'sign.html', {'site': site})
 
 
 def LoginPage(request):
+    site = Site.objects.first()
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -74,8 +76,8 @@ def LoginPage(request):
             return redirect('index')
         else:
             hato = 'username or password error!'
-            return render(request, 'login.html', {'hato': hato})
-    return render(request, 'login.html')
+            return render(request, 'login.html', {'hato': hato, 'site': site})
+    return render(request, 'login.html', {'site': site})
 
 
 def LogoutPage(request):
