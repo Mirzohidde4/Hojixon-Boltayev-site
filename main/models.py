@@ -53,10 +53,11 @@ class Site(models.Model):
     page2 = models.CharField(max_length=100, verbose_name='2-sahifa')
     page3 = models.CharField(max_length=100, verbose_name='3-sahifa')
     page4 = models.CharField(max_length=100, verbose_name='4-sahifa')
+    permission = models.CharField(max_length=200, verbose_name='izoh qoldirish uchun')
 
     class Meta:
-        verbose_name = "4-sahifa"
-        verbose_name_plural = "4-sahifa"    
+        verbose_name = "Web sayt"
+        verbose_name_plural = "Web sayt"    
 
 
 class Comments(models.Model):

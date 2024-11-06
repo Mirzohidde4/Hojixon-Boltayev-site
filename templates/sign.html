@@ -91,9 +91,39 @@
         .signup .signup-link a:hover {
             text-decoration: underline;
         }
+
+        .alert-popup {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fbf5f6;
+            color: #99121f;
+            padding: 15px 20px;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            margin-left: 15px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #721c24;
+        }
     </style>
 </head>
 <body>
+    {% if next_param == 'comment' %}
+    <div class="alert-popup">
+        {{ site.permission }}
+        <span class="close-btn" onclick="closeAlert()">×</span>
+    </div>
+    {% endif %}
+
     <header>
         <h1 class="site-heading text-center text-faded d-none d-lg-block">
             <span class="site-heading-upper text-primary mb-3">{{ site.name }}</span>
@@ -170,5 +200,18 @@
     <footer class="footer text-faded text-center py-5">
         <div class="container"><p class="m-0 small">{{ site.title }} &copy; Website</p></div>
     </footer>
+    <script>
+        function closeAlert() {
+            document.querySelector('.alert-popup').style.display = 'none';
+        }
+        window.onload = function() {
+            setTimeout(function() {
+                const alertPopup = document.querySelector('.alert-popup');
+                if (alertPopup) {
+                    alertPopup.style.display = 'none';
+                }
+            }, 5000); // 5000 millisekund = 5 sekund
+        };
+    </script>
 </body>
 </html>

@@ -34,12 +34,13 @@ def StoreView(request):
             if comment and len(comment.strip()) != 0:
                 Comments.objects.create(author=user, comment=comment)
             return redirect('store')  
-        return redirect('sign')
+        return redirect('/sign?next=comment')
     return render(request, 'store.html', {'store': store, 'site': site, 'izoh': izoh})
 
 
 def SignPage(request):
     site = Site.objects.first()
+    next_param = request.GET.get('next', '')
     if request.method == 'POST':
         first_name = request.POST.get('firstname')
         last_name = request.POST.get('lastname')
@@ -62,7 +63,7 @@ def SignPage(request):
         else:
             hato = 'passwords didn\'t match!'
             return render(request, 'sign.html', {'hato': hato, 'site': site})
-    return render(request, 'sign.html', {'site': site})
+    return render(request, 'sign.html', {'site': site, 'next_param': next_param})
 
 
 def LoginPage(request):
